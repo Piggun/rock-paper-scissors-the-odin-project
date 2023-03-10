@@ -24,33 +24,68 @@ function getComputerChoice(){
     //else
       // you lose
 
-function playRound(playerSelection, computerSelection) {
+let playerScore = 0;
+let computerScore = 0;
+
+// declare function that gets input from the user
+function getPlayerChoice(){
+  let playerChoice = prompt("Rock, Paper or Scissors?");
+  playerChoice = playerChoice.toLowerCase();
+  return playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+}
+
+function playRound() {
+  let computerSelection = getComputerChoice();
+  let playerSelection = getPlayerChoice();
+
+  let result;
   let winnerDeclaration = `You Win! ${playerSelection} beats ${computerSelection}`;
   let loserDeclaration = `You Lose! ${computerSelection} beats ${playerSelection}`;
   let tieDeclaration = "It's a tie!";
 
   if (playerSelection === 'Rock' && computerSelection === 'Scissors'){
-    return winnerDeclaration;
+    playerScore += 1;
+    result = winnerDeclaration;
   }
   else if (playerSelection === 'Paper' && computerSelection === 'Rock'){
-    return winnerDeclaration;
+    playerScore += 1;
+    result = winnerDeclaration;
   }
   else if (playerSelection === 'Scissors' && computerSelection === 'Paper'){
-    return winnerDeclaration;
+    playerScore += 1;
+    result = winnerDeclaration;
   }
   else if (playerSelection === 'Rock' && computerSelection === 'Rock'){
-    return tieDeclaration;
+    result = tieDeclaration;
   }
   else if (playerSelection === 'Paper' && computerSelection === 'Paper'){
-    return tieDeclaration;
+    result = tieDeclaration;
   }
   else if (playerSelection === 'Scissors' && computerSelection === 'Scissors'){
-    return tieDeclaration;
+    result = tieDeclaration;
   }
   else {
-    return loserDeclaration;
+    computerScore += 1;
+    result = loserDeclaration;
+  }
+  console.log(result);
+  return result;
+}
+
+
+// declare function called game
+    // loops 5 times the playRound function
+    // keeps score and reports winner at the end
+
+function game() {
+  for (i = 0; i < 5; i++) {
+    playRound();
+    console.log(`Player score : ${playerScore}`);
+    console.log(`Computer score : ${computerScore}`);
   }
 }
+
+game();
 
 // capitalize first character and lowercase rest of the characters for case insesitive comparison
 const rawPlayerSelection = 'rock'.toLowerCase();
@@ -59,7 +94,7 @@ const playerSelection = rawPlayerSelection.charAt(0).toUpperCase()+ rawPlayerSel
 
 const computerSelection = getComputerChoice();
 
-console.log(`Player Selection = ${playerSelection}`);
-console.log(`Computer Selection = ${computerSelection}`);
+// console.log(`Player Selection = ${playerSelection}`);
+// console.log(`Computer Selection = ${computerSelection}`);
 
-console.log(playRound(playerSelection ,computerSelection));
+// console.log(playRound(playerSelection ,computerSelection));
