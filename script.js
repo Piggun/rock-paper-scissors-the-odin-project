@@ -30,6 +30,7 @@ let computerScore = 0;
 // declare function that gets input from the user
 function getPlayerChoice(){
   let playerChoice = prompt("Rock, Paper or Scissors?");
+  // capitalize first character and lowercase rest of the characters for case insesitive comparison
   playerChoice = playerChoice.toLowerCase();
   return playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
 }
@@ -82,6 +83,15 @@ function game() {
     playRound();
     console.log(`Player score : ${playerScore}`);
     console.log(`Computer score : ${computerScore}`);
+  }
+  if (playerScore > computerScore) {
+    console.log(`FINAL WINNER : You Win with a score of ${playerScore} to ${computerScore}!`);
+  }
+  else if (playerScore === computerScore) {
+    console.log("FINAL WINNER : It's a tie!");
+  }
+  else {
+    console.log(`FINAL WINNER : You Lose with a score of ${playerScore} to ${computerScore}!`)
   }
 }
 
