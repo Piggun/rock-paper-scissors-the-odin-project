@@ -35,14 +35,14 @@ function getPlayerChoice(){
   return playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
 }
 
-function playRound() {
+function playRound(selectedButton) {
   let computerSelection = getComputerChoice();
-  let playerSelection = getPlayerChoice();
+  let playerSelection = selectedButton.charAt(0).toUpperCase() + selectedButton.slice(1);
 
   let result;
-  let winnerDeclaration = `You Win! ${playerSelection} beats ${computerSelection}`;
-  let loserDeclaration = `You Lose! ${computerSelection} beats ${playerSelection}`;
-  let tieDeclaration = "It's a tie!";
+  let winnerDeclaration = `You Win this round! ${playerSelection} beats ${computerSelection}`;
+  let loserDeclaration = `You Lose this round! ${computerSelection} beats ${playerSelection}`;
+  let tieDeclaration = "It's a tie in this round!";
 
   if (playerSelection === 'Rock' && computerSelection === 'Scissors'){
     playerScore += 1;
@@ -69,30 +69,44 @@ function playRound() {
     computerScore += 1;
     result = loserDeclaration;
   }
-  console.log(result);
-  return result;
+  roundResult.textContent = result;
+  playerScoreTxt.textContent = playerScore;
+  computerScoreTxt.textContent = computerScore;
+  return result
 }
+
+
+const buttons = document.querySelectorAll("button");
+const roundResult = document.querySelector('#roundResult');
+const playerScoreTxt = document.querySelector("#playerScoreTxt span");
+const computerScoreTxt = document.querySelector("#computerScoreTxt span");
+
+
+buttons.forEach((element) => element.addEventListener('click', () =>{
+  playRound(element.id)
+}))
+
 
 
 // declare function called game
     // loops 5 times the playRound function
     // keeps score and reports winner at the end
 
-function game() {
-  for (i = 0; i < 5; i++) {
-    playRound();
-    console.log(`Player score : ${playerScore}`);
-    console.log(`Computer score : ${computerScore}`);
-  }
-  if (playerScore > computerScore) {
-    console.log(`FINAL WINNER : You Win with a score of ${playerScore} to ${computerScore}!`);
-  }
-  else if (playerScore === computerScore) {
-    console.log("FINAL WINNER : It's a tie!");
-  }
-  else {
-    console.log(`FINAL WINNER : You Lose with a score of ${playerScore} to ${computerScore}!`)
-  }
-}
+// function game() {
+//   for (i = 0; i < 5; i++) {
+//     playRound();
+//     console.log(`Player score : ${playerScore}`);
+//     console.log(`Computer score : ${computerScore}`);
+//   }
+//   if (playerScore > computerScore) {
+//     console.log(`FINAL WINNER : You Win with a score of ${playerScore} to ${computerScore}!`);
+//   }
+//   else if (playerScore === computerScore) {
+//     console.log("FINAL WINNER : It's a tie!");
+//   }
+//   else {
+//     console.log(`FINAL WINNER : You Lose with a score of ${playerScore} to ${computerScore}!`)
+//   }
+// }
 
-game();
+// game();
