@@ -96,15 +96,3 @@ function game() {
 }
 
 game();
-
-// capitalize first character and lowercase rest of the characters for case insesitive comparison
-const rawPlayerSelection = 'rock'.toLowerCase();
-const playerSelection = rawPlayerSelection.charAt(0).toUpperCase()+ rawPlayerSelection.slice(1);
-
-
-const computerSelection = getComputerChoice();
-
-// console.log(`Player Selection = ${playerSelection}`);
-// console.log(`Computer Selection = ${computerSelection}`);
-
-// console.log(playRound(playerSelection ,computerSelection));
